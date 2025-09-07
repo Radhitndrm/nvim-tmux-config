@@ -1,0 +1,15 @@
+{
+  "vuets": {
+    "prefix": "vuets",
+    "body": [
+      "<script lang=\"ts\" setup>",
+      "",
+      "</script>",
+      "",
+      "<template>",
+      "   $1",
+      "</template>"
+    ],
+    "description": "Vue 3 SFC with TS"
+  }
+}
