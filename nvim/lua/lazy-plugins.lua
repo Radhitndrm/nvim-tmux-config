@@ -84,6 +84,9 @@ return require("lazy").setup({
 
 	-- Barbar
 	require("ndrm.plugins.barbar"),
+
+	-- CodeSnap
+	require("ndrm.plugins.codesnap"),
 	-- ===============================
 	{
 		"glepnir/dashboard-nvim",

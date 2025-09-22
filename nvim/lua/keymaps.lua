@@ -24,6 +24,19 @@ vim.keymap.set("n", "<M-o>", "<C-^>")
 vim.api.nvim_set_keymap("i", "<M-CR>", 'copilot#Accept("<CR>")', { expr = true, noremap = true, silent = true })
 vim.g.copilot_no_tab_map = true
 
+-- Run Python file dengan Alt+\
+
+vim.keymap.set("n", "<A-\\>", function()
+	vim.cmd("w") -- save file dulu
+	local filepath = vim.fn.expand("%:p") -- full path file
+	-- buka split bawah tinggi 15 baris, lalu jalankan bash -c supaya bisa print header+footer
+	vim.cmd(
+		"belowright split | resize 15 | term bash -c \"printf '\\n=== Run: "
+			.. filepath
+			.. " ===\\n\\n'; python3 %; printf '\\n=== Done ===\\n'\""
+	)
+end, { desc = "Run current Python file in terminal (with full path)", noremap = true })
+
 vim.keymap.set("n", "<leader>v", ":vsplit<CR>")
 vim.keymap.set("n", "<leader>h", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<leader>l", "<C-w><C-l>", { desc = "Move focus to the right window" })
@@ -69,7 +82,11 @@ vim.keymap.set("n", "vv", "ggVG", { desc = "Select all" })
 
 -- Tambah koma di akhir baris dengan ',,'
 vim.keymap.set("n", ",,", "mzA,<Esc>`z", { desc = "Tambah koma di akhir baris" })
+
+vim.keymap.set("v", "<leader>cs", "<cmd>CodeSnap<cr>", { desc = "Snapshot Code (copy to clipboard)" })
+vim.keymap.set("v", "<leader>cS", "<cmd>CodeSnapSave<cr>", { desc = "Snapshot Code (save to file)" })
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
+--
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
 -- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
