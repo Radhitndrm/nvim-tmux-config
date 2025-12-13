@@ -1,0 +1,11 @@
+
+function fish_prompt
+    set_color cyan
+    # kalau di home, ganti ~ dengan logo Arch
+    if test (pwd) = $HOME
+        echo -n " "
+    else
+        echo -n (prompt_pwd) " "
+    end
+    set_color normal
+end
