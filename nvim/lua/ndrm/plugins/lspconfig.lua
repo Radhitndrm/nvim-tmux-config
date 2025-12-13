@@ -218,17 +218,8 @@ return {
 			--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
 			local servers = {
-				-- volar = {
-				--   init_options = {
-				--     typescript = {
-				--       tsdk = vim.fn.stdpath 'data' .. '/mason/packages/typescript-language-server/node_modules/typescript/lib',
-				--     },
-				--     vue = {
-				--       hybridMode = false,
-				--     },
-				--   },
-				-- },
 				ts_ls = {
 					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 					init_options = {
@@ -245,21 +236,37 @@ return {
 				},
 
 				lua_ls = {
-					-- cmd = { ... },
-					-- filetypes = { ... },
-					-- capabilities = {},
 					settings = {
 						Lua = {
 							completion = {
 								callSnippet = "Replace",
 							},
-							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-							-- diagnostics = { disable = { 'missing-fields' } },
 						},
 					},
 				},
-			}
 
+				-- ✅ aktifkan autocomplete HTML dalam file .php
+				html = {
+					filetypes = { "html", "htm", "php", "phtml" },
+					init_options = {
+						provideFormatter = true,
+					},
+				},
+
+				-- ⛔ hentikan intelephense agar tidak menimpa autocomplete html
+				intelephense = {
+					filetypes = { "php" }, -- jangan override html
+					on_attach = function(client, bufnr)
+						-- stop intelephense sementara di file php agar html-lsp menang
+						vim.api.nvim_create_autocmd("FileType", {
+							pattern = "php",
+							callback = function()
+								client.server_capabilities.completionProvider = false
+							end,
+						})
+					end,
+				},
+			}
 			-- Ensure the servers and tools above are installed
 			--
 			-- To check the current status of installed tools and/or manually install

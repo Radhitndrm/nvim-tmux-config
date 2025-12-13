@@ -1,32 +1,32 @@
 return {
 	{
-		"AlexvZyl/nordic.nvim",
-		name = "nordic",
+		"EdenEast/nightfox.nvim",
+		name = "nightfox",
 		priority = 1000,
 		config = function()
-			require("nordic").setup({
-				-- Konfigurasi opsional
-				italic_comments = true,
-				bold_keywords = false,
-				transparent = {
-					bg = true, -- true kalau mau background transparan
-					float = false,
+			require("nightfox").setup({
+				options = {
+					term_colors = true,
+					styles = {
+						comments = "italic",
+						keywords = "bold",
+						functions = "bold",
+						variables = "NONE",
+					},
 				},
-				reduced_blue = true,
-				cursorline = {
-					bold = false,
-					bold_number = true,
-					theme = "dark",
-					blend = 0.85,
+				-- highlight overrides untuk aksen pink/magenta
+				colors = {
+					-- overriding palette
+					keyword = "#ff55ff",
+					functions = "#ff77ff",
+					comment = "#ff99ff",
+					string = "#ff66aa",
+					number = "#ff55ff",
 				},
-				noice = { style = "classic" },
-				telescope = { style = "flat" },
-				leap = { dim_backdrop = false },
-				ts_context = { dark_background = true },
 			})
 
-			-- set colorscheme
-			vim.cmd.colorscheme("nordic")
+			-- set colorscheme Duskfox (lebih gelap, magenta accent)
+			vim.cmd.colorscheme("duskfox")
 		end,
 	},
 }

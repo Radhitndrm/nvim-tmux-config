@@ -77,7 +77,7 @@ return require("lazy").setup({
 	require("ndrm.plugins.lualine"),
 
 	-- notify
-	require("ndrm.plugins.nvim-notify"),
+	-- require("ndrm.plugins.nvim-notify"),
 
 	-- legendary
 	require("ndrm.plugins.legendary"),
