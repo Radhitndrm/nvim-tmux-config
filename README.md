@@ -130,6 +130,8 @@ tmux
 # Install plugin dengan Prefix + I (Ctrl-Space + Shift-I)
 ```
 
+**Catatan**: Binding `Prefix + f` untuk tmux-sessionizer memerlukan script kustom di `~/.local/scripts/tmux-sessionizer`. Anda bisa membuat script sendiri atau menghapus binding ini jika tidak diperlukan.
+
 #### Fish Shell
 
 ```bash
@@ -208,7 +210,7 @@ Ctrl + Shift + F5
 - `Alt + l`: Next client
 
 #### Shortcuts
-- `Prefix + f`: Tmux sessionizer
+- `Prefix + f`: Tmux sessionizer (memerlukan script di `~/.local/scripts/tmux-sessionizer`)
 - `Prefix + r`: Reload konfigurasi
 
 #### Copy Mode
